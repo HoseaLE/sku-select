@@ -1,0 +1,28 @@
+{
+  "name": "sku-calculate",
+  "version": "1.0.0",
+  "description": "sku属性计算，输入选中属性，返回属性可选状态",
+  "main": "index.js",
+  "scripts": {
+    "dll": "babel src --out-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.5"
+  },
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoseaLE/sku-calculate.git"
+  },
+  "keywords": ["sku", "calculate"],
+  "author": "hosea",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HoseaLE/sku-calculate/issues"
+  },
+  "homepage": "https://github.com/HoseaLE/sku-calculate#readme"
+}
