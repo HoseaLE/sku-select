@@ -32,17 +32,7 @@ class Sku {
 
     // 剩余的skus
     const extraSku = this.skus;
-    // const extraSku = this.skus.filter(item => {
-    //   let flag = true;
-    //   for (let o in preSelected) {
-    //     // 只要存在不等， 就是没选中
-    //     if (preSelected[o] + '' !== '' + item.attr[o]) {
-    //       flag = false;
-    //     };
-    //   }
-    //   return flag
-    // });
-
+ 
     // 剩余的属性
     const extraSpec = {};
     for (let o in this.spec) {
@@ -61,14 +51,14 @@ class Sku {
         const atr = extraSpec[o];// [{value:'', selectable: false}];
 
         // 排除该项后，已被选择的属性
-        const otherAtr = Object.entries(attr).map(s => '' + s[0] !== '' + o);
+        const otherAtr = Object.entries(attr).filter(s => '' + s[0] !== '' + o);
 
         atr.forEach(item => {
           // 是否存在可选属性
           const hasAtr = extraSku.find(obj => {
             let flag = true;
             otherAtr.forEach(val => {
-              if (obj.attr[val[0]] !== val[1]) {
+              if (obj.attr[val[0]] !== val[1] || || obj.amount <= 0 && amount > obj.amount) {
                 flag = false
               }
             });
@@ -76,7 +66,7 @@ class Sku {
             // 该项 + 已被选中的值 都满足才可选
             return '' + obj.attr[o] === '' + item.value && flag
           });
-          if (hasAtr && hasAtr.amount >= 1 && amount <= hasAtr.amount) {
+          if (hasAtr) {
             item.selectable = true;
           }
         });
