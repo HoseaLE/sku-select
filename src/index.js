@@ -58,7 +58,7 @@ class Sku {
           const hasAtr = extraSku.find(obj => {
             let flag = true;
             otherAtr.forEach(val => {
-              if (obj.attr[val[0]] !== val[1] || || obj.amount <= 0 && amount > obj.amount) {
+              if (obj.attr[val[0]] !== val[1] || obj.amount <= 0 && amount > obj.amount) {
                 flag = false
               }
             });

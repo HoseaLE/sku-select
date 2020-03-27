@@ -55,17 +55,7 @@ var Sku = /*#__PURE__*/function () {
         return flag;
       }); // 剩余的skus
 
-      var extraSku = this.skus; // const extraSku = this.skus.filter(item => {
-      //   let flag = true;
-      //   for (let o in preSelected) {
-      //     // 只要存在不等， 就是没选中
-      //     if (preSelected[o] + '' !== '' + item.attr[o]) {
-      //       flag = false;
-      //     };
-      //   }
-      //   return flag
-      // });
-      // 剩余的属性
+      var extraSku = this.skus; // 剩余的属性
 
       var extraSpec = {};
 
@@ -99,7 +89,7 @@ var Sku = /*#__PURE__*/function () {
           var atr = extraSpec[_o]; // [{value:'', selectable: false}];
           // 排除该项后，已被选择的属性
 
-          var otherAtr = Object.entries(attr).map(function (s) {
+          var otherAtr = Object.entries(attr).filter(function (s) {
             return '' + s[0] !== '' + _o;
           });
           atr.forEach(function (item) {
@@ -107,7 +97,7 @@ var Sku = /*#__PURE__*/function () {
             var hasAtr = extraSku.find(function (obj) {
               var flag = true;
               otherAtr.forEach(function (val) {
-                if (obj.attr[val[0]] !== val[1]) {
+                if (obj.attr[val[0]] !== val[1] || obj.amount <= 0 && amount > obj.amount) {
                   flag = false;
                 }
               }); // 该项 + 已被选中的值 都满足才可选
@@ -115,7 +105,7 @@ var Sku = /*#__PURE__*/function () {
               return '' + obj.attr[_o] === '' + item.value && flag;
             });
 
-            if (hasAtr && hasAtr.amount >= 1 && amount <= hasAtr.amount) {
+            if (hasAtr) {
               item.selectable = true;
             }
           });
